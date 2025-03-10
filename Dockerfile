@@ -1,4 +1,4 @@
-FROM --platform=$BUILDPLATFORM mcr.microsoft.com/dotnet/sdk:8.0-bookworm-slim AS build-env
+FROM --platform=$BUILDPLATFORM mcr.microsoft.com/dotnet/sdk:9.0-bookworm-slim AS build-env
 
 ARG TARGETARCH
 
@@ -19,7 +19,7 @@ RUN dotnet restore ./src/DemoApi/ -a $TARGETARCH
 RUN dotnet publish ./src/DemoApi/ -c Release --no-restore -o out -a $TARGETARCH --self-contained false -p:PublishSingleFile=true
 
 # Create runtime image
-FROM --platform=$BUILDPLATFORM mcr.microsoft.com/dotnet/aspnet:8.0-bookworm-slim
+FROM --platform=$BUILDPLATFORM mcr.microsoft.com/dotnet/aspnet:9.0-bookworm-slim
 
 WORKDIR /app
 
