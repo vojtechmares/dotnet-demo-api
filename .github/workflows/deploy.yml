@@ -1,0 +1,20 @@
+name: Deploy
+
+on:
+  workflow_run:
+    workflows: [".NET Test", "Docker build"]
+    types: [completed]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-24.04
+    if: github.event.workflow_run.conclusion == 'success'
+    environment: fake
+
+    concurrency:
+      group: "${{ github.workflow }}-${{ github.ref }}"
+      cancel-in-progress: true
+
+    steps:
+    - name: Fake deploy
+      run: echo "Fake deploy"
