@@ -1,0 +1,17 @@
+version: 2
+updates:
+  # Enable version updates for nuget
+  - package-ecosystem: "nuget"
+    # Look for `package.json` and `lock` files in the `root` directory
+    directory: "/src/DemoApi"
+    # Check the nuget registry for updates every day (weekdays)
+    schedule:
+      interval: "daily"
+
+  # Enable version updates for nuget
+  - package-ecosystem: "nuget"
+    # Look for `package.json` and `lock` files in the `root` directory
+    directory: "/tests/DemoApi.Tests"
+    # Check the nuget registry for updates every week
+    schedule:
+      interval: "weekly"
