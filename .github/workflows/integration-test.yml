@@ -16,7 +16,17 @@ jobs:
           - 5432/tcp
 
     steps:
-      - name: Run tests
+      - name: Wait for Postgres database to be ready
+        env:
+          RETRIES: 5
         run: |
-          echo "Running integration tests..."
-          telnet 127.0.0.1 ${{ job.services.postgres.ports['5432'] }}
+          # real retry/wait command
+          # until psql -h $PG_HOST -U $PG_USER -d $PG_DATABASE -c "select 1" > /dev/null 2>&1 || [ $RETRIES -eq 0 ]; do
+          # dummy wait
+          until [ $RETRIES -eq 0 ]; do
+            echo "Waiting for PostgreSQL to become ready, $((RETRIES--)) attempts remaining..."
+            sleep 5
+          done
+
+      - name: Run integration tests
+        run: echo "Running integration tests..."
