@@ -1,0 +1,28 @@
+name: Demo of enviornment variables
+
+on: [push]
+
+env:
+  NAME: Alice
+
+jobs:
+  print:
+    runs-on: ubuntu-latest
+
+    environment: fake
+
+    env:
+      NAME: Bob
+
+    steps:
+      - name: Print env var
+        env:
+          NAME: Charles
+        run: echo ${{ env.NAME }}
+
+      - name: Generate env var
+        run: |
+          echo "DEBUG_MODE=true" >> $GITHUB_ENV
+
+      - name: Get debug mode
+        run: echo $DEBUG_MODE
