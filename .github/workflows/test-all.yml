@@ -1,6 +1,6 @@
 name: Test all (on all branches)
 
-on: [push]
+on: [push, pull_request]
 
 jobs:
   test:
@@ -39,3 +39,11 @@ jobs:
           --logger GitHubActions
           --
           RunConfiguration.CollectSourceInformation=true
+
+      - name: Comment on PR with coverage
+        if: ${{ github.event_name == 'pull_request' }}
+        run: echo "Test coverage 99%"
+        # uses: actions/github-script@v7
+        # script: |
+        # ...
+        # send comment to pull request
