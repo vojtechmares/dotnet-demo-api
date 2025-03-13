@@ -1,0 +1,12 @@
+name: Demo workflow
+
+on: [push]
+
+jobs:
+  demo:
+    runs-on: ubuntu-latest # self-hosted
+
+    steps:
+      - name: Hello world
+        shell: bash
+        run: echo "Hello, world!"
