@@ -9,6 +9,9 @@ jobs:
     services:
       postgres:
         image: postgres:17
+        # credentials:
+        #   username: ${{ secrets.dockerhub_username }}
+        #   password: ${{ secrets.dockerhub_password }}
         ports:
           - 5432/tcp
 
