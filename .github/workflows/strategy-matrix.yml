@@ -20,4 +20,3 @@ jobs:
         continue-on-error: ${{ matrix.version == 23 }}
         run: |
           echo "Running tests..."
-          [[ "${{ matrix.version }}" == "18" ]] && false
