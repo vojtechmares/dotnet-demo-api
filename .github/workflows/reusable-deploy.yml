@@ -1,0 +1,20 @@
+name: Reusable deploy
+
+on:
+  workflow_call:
+    inputs:
+      environment:
+        required: true
+        type: string
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    environment: ${{ inputs.environment }}
+
+    steps:
+      - name: Deploy
+        run: |
+          echo "Deploying to ${{ inputs.environment }}..."
+          sleep 30
+          echo "Deploy to ${{ inputs.environment }} complete."
