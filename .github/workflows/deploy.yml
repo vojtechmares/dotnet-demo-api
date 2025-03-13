@@ -8,13 +8,15 @@ on:
 jobs:
   deploy:
     runs-on: ubuntu-24.04
-    if: github.event.workflow_run.conclusion == 'success'
+    if: ${{ github.event.workflow_run.conclusion == 'success' }}
     environment: fake
 
     concurrency:
-      group: "${{ github.workflow }}-${{ github.ref }}"
+      group: deploy-prod
       cancel-in-progress: true
 
     steps:
     - name: Fake deploy
-      run: echo "Fake deploy"
+      run: |
+        sleep 300
+        echo "Fake deploy"
