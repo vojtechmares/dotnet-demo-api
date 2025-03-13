@@ -12,7 +12,11 @@ jobs:
 
   docker-build:
     needs: [test]
+    permissions:
+      contents: read
+      packages: write
     uses: vojtechmares/dotnet-demo-api/.github/workflows/reusable-docker-build.yml@main
+    secrets: inherit
 
   deploy:
     needs: [docker-build]
