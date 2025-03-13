@@ -15,7 +15,9 @@ jobs:
 
     steps:
       - name: Test
-        run: echo "Running tests..." && false
+        run: |
+          sleep 30
+          echo "Running tests..." && false
 
   publish-artifact:
     runs-on: ubuntu-latest
