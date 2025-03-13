@@ -1,0 +1,21 @@
+name: Continue on error
+
+on: [push]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Run tests
+        run: echo "Running tests..."
+
+  check-outdated-dependencies:
+    runs-on: ubuntu-latest
+
+    continue-on-error: true
+
+    steps:
+      - name: Check outdated deps
+        run: |
+          echo "Checking for outdated dependencies..." && false
