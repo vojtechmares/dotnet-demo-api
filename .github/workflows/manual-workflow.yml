@@ -1,0 +1,21 @@
+name: Trigger me via GitHub Actions UI manually
+
+on:
+  workflow_dispatch:
+    inputs:
+      branch:
+        type: string
+        required: true
+
+jobs:
+  example:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ inputs.branch }}
+        
+      - name: Run
+        run: ls
