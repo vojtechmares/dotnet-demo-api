@@ -6,7 +6,7 @@ on:
 
 jobs:
   test:
-    uses: vojtechmares/dotnet-demo-api/.github/workflows/reusable-test.yml@main
+    uses: vojtechmares-examples/training-2025-03-13-ssd-github-actions-demo-dotnet-api/.github/workflows/reusable-test.yml@main
     with:
       dotnet-version: '9.0.x'
 
@@ -15,12 +15,12 @@ jobs:
     permissions:
       contents: read
       packages: write
-    uses: vojtechmares/dotnet-demo-api/.github/workflows/reusable-docker-build.yml@main
+    uses: vojtechmares-examples/training-2025-03-13-ssd-github-actions-demo-dotnet-api/.github/workflows/reusable-docker-build.yml@main
     secrets: inherit
 
   deploy:
     needs: [docker-build]
     if: ${{ contains(github.ref, 'release') }}
-    uses: vojtechmares/dotnet-demo-api/.github/workflows/reusable-deploy.yml@main
+    uses: vojtechmares-examples/training-2025-03-13-ssd-github-actions-demo-dotnet-api/.github/workflows/reusable-deploy.yml@main
     with:
       environment: fake
