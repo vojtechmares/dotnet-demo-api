@@ -7,6 +7,6 @@ jobs:
     runs-on: ubuntu-latest # self-hosted
 
     steps:
-      - name: Hello world
+      - name: List all files
         shell: bash
-        run: echo "Hello, world!"
+        run: ls -r
