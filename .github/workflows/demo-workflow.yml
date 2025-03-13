@@ -7,6 +7,9 @@ jobs:
     runs-on: ubuntu-latest # self-hosted
 
     steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
       - name: List all files
         shell: bash
         run: ls -r
