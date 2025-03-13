@@ -1,0 +1,25 @@
+name: Output demo
+
+on: [push]
+
+jobs:
+  today:
+    runs-on: ubuntu-latest
+
+    outputs:
+      date: ${{ steps.date.outputs.DATE }}
+
+    steps:
+      - name: Get date
+        id: date
+        run: |
+          echo "DATE=$(date '%(%Y-%m-%d)T\n')" >> $GITHUB_OUTPUT
+
+  print-date:
+    runs-on: ubuntu-latest
+    needs: [today]
+
+    steps:
+      - name: Print date
+        run: |
+          echo ${{ needs.today.outputs.date }}
