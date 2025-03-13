@@ -1,0 +1,19 @@
+name: Integration testing demo
+
+on: [push]
+
+jobs:
+  integration-testing:
+    runs-on: ubuntu-latest
+
+    services:
+      postgres:
+        image: postgres:17
+        ports:
+          - 5432/tcp
+
+    steps:
+      - name: Run tests
+        run: |
+          echo "Running integration tests..."
+          telnet 127.0.0.1 ${{ job.services.postgres.ports['5432'] }}
